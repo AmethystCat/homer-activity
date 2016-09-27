@@ -1,0 +1,45 @@
+@import url(./base);
+.btn {
+	@w: 7.333333rem; // 550px
+	@h: 1.333333rem; // 100px
+	width: @w;
+	height: @h;
+	padding: 0;
+	margin: 0 auto;
+	border-width: 0;
+	border-radius: 0.12rem;
+	background: transparent;
+	text-align: center;
+	color: #fff;
+	font-size: 17px;
+	transition: all .1s linear;
+	&:active {
+		background: rgba(255,255,255,.25);
+	}
+}
+.btn-default {
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+.btn-border {
+	border: 1px solid #fff;
+}
+.btn-red {
+	background-color: rgb(255, 90, 96);
+	&:active {
+		background-color: rgba(255, 90, 96, .8);
+	}
+}
+[data-dpr="2"] .btn {font-size: 34px;}
+[data-dpr="3"] .btn {font-size: 51px;}
+
+.intro-link {
+	padding: 0 0.04rem 0.133333rem 0.04rem;
+	color: #fff;
+	text-decoration: none;
+	font-size: 12px;
+	line-height: 1;
+	border-bottom: 1px solid #fff;
+}
+[data-dpr="2"] .intro-link {font-size: 24px;}
+[data-dpr="3"] .intro-link {font-size:36px;}
