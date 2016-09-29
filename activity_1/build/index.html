@@ -32,15 +32,15 @@
 					</div>
 				</div>
 				<div class="form-item input-w mobile-w">
-					<input type="tel" id="mobile" placeholder="手机号">
+					<input type="tel" id="mobile" placeholder="请输入您的手机号">
 				</div>
 				<div class="form-item input-w authCode-w">
-					<input type="tel" id="auth-code" placeholder="验证码">
+					<input type="tel" id="auth-code" placeholder="请输入验证码">
 					<button type="button" class="btn btn-getCode">获取验证码</button>
 				</div>
 				<div class="form-item input-w pass-w">
-					<input type="password" id="password" placeholder="密码">
-					<button type="button" title="eyes" class="btn btn-eye"><i class="sprite sprite-eye_open"></i></button>
+					<input type="password" id="password" placeholder="请输入密码">
+					<button type="button" title="eyes" class="btn btn-eye"><i class="sprite sprite-eye_close"></i></button>
 				</div>
 				<div class="form-item check-w agreement-w">
 					<label for="agree">
@@ -74,7 +74,14 @@
 				.removeClass('page-next')
 				.siblings('.section-page')
 				.removeClass('page-active page-next')
-				.addClass('page-prev')
+				.addClass('page-prev');
+		} else if (hash === 'regist') {
+			$('.section-page-2')
+				.addClass('page-active')
+				.removeClass('page-next')
+				.siblings('.section-page-1')
+				.removeClass('page-active')
+				.addClass('page-prev');
 		}
 
 		/*which transitionevent*/
@@ -96,11 +103,9 @@
 		 /*page transition*/
 		function slideOver() {
 		 	$('.page-in').off().on(transend, function() {
-			 	console.log('12312');
 		 		$(this).removeClass('page-in');
 		 	});
 		 	$('.page-out').off().on(transend, function() {
-			 	console.log('12312');
 		 		$(this).removeClass('page-out');
 		 	})
 		}
@@ -143,6 +148,7 @@
 		});
 
 		$('.btn-goRegist').click(function(){
+			history.pushState({'page': '2'}, '', '#regist');
 		 	to2();
 		});
 
@@ -151,16 +157,16 @@
 		 	to3();
 		});
 
-		$('.sprite-eye_open').on('click', function() {
-			if ($(this).hasClass('sprite-eye_open')) {
-				$(this)
-				    .addClass('sprite-eye_close')
-				    .removeClass('sprite-eye_open')
-				    .parent().siblings('input').attr('type', 'text')
-			} else {
+		$('.sprite-eye_close').on('click', function() {
+			if ($(this).hasClass('sprite-eye_close')) {
 				$(this)
 				    .addClass('sprite-eye_open')
 				    .removeClass('sprite-eye_close')
+				    .parent().siblings('input').attr('type', 'text')
+			} else {
+				$(this)
+				    .addClass('sprite-eye_close')
+				    .removeClass('sprite-eye_open')
 				    .parent().siblings('input').attr('type', 'password')
 			}
 		});
