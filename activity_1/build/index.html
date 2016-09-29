@@ -148,12 +148,12 @@
 		});
 
 		$('.btn-goRegist').click(function(){
-			history.pushState({'page': '2'}, '', '#regist');
+			history.pushState({'page': 2}, '', '#regist');
 		 	to2();
 		});
 
 		$('.btn-regist').click(function(){
-			history.pushState({'page': '3'}, '', '#success');
+			history.pushState({'page': 3}, '', '#success');
 		 	to3();
 		});
 
@@ -173,6 +173,10 @@
 
 		$('#btn-op').on('click', function(e) {
 			window.location.href="http://a.app.qq.com/o/simple.jsp?pkgname=cn.com.homer.eu";
+		});
+
+		$(window).on('popstate', function(e) {
+			console.log(e.state);
 		});
 	});
 </script>
