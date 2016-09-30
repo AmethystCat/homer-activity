@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/cross-env NODE_ENV=development ./node_modules/.bin/webpack-dev-server --progress --colors --content-base build",
-    "deploy": "./node_modules/.bin/cross-env NODE_ENV=production ./node_modules/.bin/webpack -p"
+    "start": "./node_modules/.bin/webpack-dev-server --progress --colors --content-base build ",
+    "deploy": "./node_modules/.bin/webpack -p --define process.env.NODE_ENV='production'"
   },
   "babel": {
     "presets": [
