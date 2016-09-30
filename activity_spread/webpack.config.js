@@ -10,10 +10,14 @@ console.log('==================================================华丽丽的分�
 // --------------------------------------------------------------------------------------------
 var config_dev = {
 	entry: {
-		bundle: [
+		index: [
 			'webpack/hot/dev-server',
-			path.resolve(__dirname,'src/entry.js')
+			path.resolve(__dirname,'src/react/entry-index.js')
 		],
+                           login: [
+                                'webpack/hot/dev-server',
+                                path.resolve(__dirname,'src/react/entry-login.js')
+                           ],
 		vendors: ['react', 'react-dom']
 	},
 	output: {
@@ -43,11 +47,12 @@ var config_dev = {
             },
 			{
 				test: /\.less$/,
-				loaders: ['style-loader', 'css-loader?sourceMap', 'less-loader?sourceMap']
+                                                    // toFix: css-loader 的sourcemap导致less文件中background的url属性应用的图片不显示，暂时不知道原因
+				loaders: ['style-loader', 'css-loader', 'less-loader?sourceMap']
 			},
 			{
                 test: /\.(jpg|jpeg|png|gif|)$/i,
-                loaders: ['url-loader?limit=15000']
+                loaders: ['url-loader?limit=15000&name=images/[name].[ext]']
             }, 
             {
             	test: /\.(js|jsx)$/,
@@ -68,12 +73,12 @@ var config_dev = {
 	devServer: {
             hot: true,
             inline: true,
-            proxy: {
-              '/*': {
-                  target: 'http://localhost:3000/',
-                  secure: false
-              }
-            }
+            // proxy: {
+            //   '/*': {
+            //       target: 'http://localhost:3000/',
+            //       secure: false
+            //   }
+            // }
         }
 };
 
