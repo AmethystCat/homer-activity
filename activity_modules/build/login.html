@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="x5-fullscreen" content="true">
+	<meta name="description" content="开启您的贵宾生活新选择。"/>
+	<title>荷马生活家</title>
+	<link rel="shortcut icon" href="https://www.homer.com.cn/images/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="/css/style-spread-login.css">
+</head>
+<body>
+	<div class="container">
+		<div class="section-page section-page-2 page-active">
+			<img src="/images/logo.png" alt="荷马智能锁，开启硬件免费新时代！" class="logo">	
+			<form class="form" id="form">
+				<div class="form-item tip-w">
+					请使用荷马账号登录
+				</div>
+				<div class="form-item input-w mobile-w">
+					<input type="tel" id="mobile" placeholder="请输入您的手机号">
+				</div>
+				<div class="form-item input-w pass-w">
+					<input type="password" id="password" placeholder="请输入密码">
+					<!-- <button type="button" title="eyes" class="btn btn-eye"><i class="sprite sprite-eye_close"></i></button> -->
+				</div>
+				<button type="button" class="btn btn-red btn-login">登 录</button>
+			</form>
+		</div>
+	</div>
+</body>
+<script>
+	!function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("将根据已有的meta标签来设置缩放比例");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=a.navigator.userAgent,q=(!!p.match(/android/gi),!!p.match(/iphone/gi)),r=q&&!!p.match(/OS 9_3/),s=a.devicePixelRatio;i=q&&!r?s>=3&&(!i||i>=3)?3:s>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var t=e.createElement("div");t.appendChild(g),e.write(t.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));
+</script>
+<script src="/js/zepto.min.js"></script>
+<script>
+	$(function() {
+		$(window).on('popstate', function(e) {
+			console.log(e.state);
+		});
+	});
+</script>
+</html>

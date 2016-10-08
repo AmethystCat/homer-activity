@@ -1,0 +1,87 @@
+@import url(./component);
+.section-page {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	&-2 {
+		background: #000  url('/images/bg_2.png') no-repeat center;
+		background-size: 100% 100%;
+		text-align: center;
+		padding-top: 1.066667rem; // 80px
+		min-height: 5rem;
+		input {
+			background: transparent;;
+			border-width: 0;
+			color: #fff;
+			vertical-align: middle;
+		}
+		.logo {
+			width: 5.36rem;
+			height: 1.92rem;
+			max-width: 100%;
+		}
+		.form {
+			padding: 1.533333rem 1.266667rem 0; // 115 95 0 95
+		}
+		.form-item {
+			@c: #c1c1c1;
+			position: relative;
+			height: 1.333333rem;
+			line-height: 1.2rem;
+			border-bottom: 1px solid rgba(193, 193, 193, .5);
+			text-align: left;
+			color: #fff;
+			overflow: hidden;
+			&.tip-w {
+				height: 0.32rem;
+				padding-bottom: 0.32rem;
+				line-height: inherit;
+			}
+			&.input-w {
+				input {
+					// height: 100%;
+					height: 0.4rem;
+					padding: 0.466667rem 0;
+					font-size: 14px;
+				}
+			}
+			&.pass-w {
+				.btn-eye {
+					position: absolute;
+					top: 50%;
+					right: 0;
+					width: auto;
+					height: 0.4rem;
+					margin-top: -0.2rem;
+				}
+			}
+		}
+		.btn-login {
+			display: block;
+			margin-top: 0.933333rem; // 70
+			margin-bottom: 0.8rem;
+		}
+	}
+}
+[data-dpr="2"] {
+	.section-page-2 {
+		.form-item.invite-w {font-size: 28px}
+		.form-item.input-w input {font-size: 28px;}
+		.btn-getCode {font-size: 28px}
+		.invite-code{font-size: 36px;}
+	}
+}
+
+[data-dpr="3"] {
+	.section-page-2 {
+		.form-item.invite-w {font-size: 42px}
+		.form-item.input-w input {font-size: 42px;}
+		.btn-getCode {font-size: 42px}
+		.invite-code{font-size: 54px;}
+	}
+}
