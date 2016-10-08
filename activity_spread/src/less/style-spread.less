@@ -8,19 +8,6 @@
 	z-index: 2;
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
-	&-1 {
-		background-color: #000;
-		color: #fff;
-		text-align: center;
-		img {
-			width: 100%;
-		}
-		.btn-goRegist {
-			display: block;
-			margin-bottom: 0.8rem;
-			border-color: rgba(255, 255, 255, 0.7);
-		}
-	}
 	&-2 {
 		background: url('../images/bg_2.png') no-repeat center;
 		background-size: 100% 100%;
@@ -105,41 +92,6 @@
 			color: #fff;
 		}
 	}
-	&-3 {
-		@c1: #808080;
-		@c2: #ff5a60;
-		@c3: #ccc;
-		background-color: rgb(245, 245, 245);
-		text-align: center;
-		padding-top: 3.066667rem; // 230
-		img {
-			width: 3.226667rem; // 242
-			height: 3.226667rem;
-			margin-bottom: 1.333333rem; // 100
-		}
-		img + P {
-			margin-bottom: 0.2rem;
-		}
-		p {
-			margin: 0;
-			color: @c1;
-			font-size: 14px;
-		}
-		.btn-operate {
-			margin-top: 0.666667rem; // 50
-			margin-bottom: 0.3rem;
-			width: 5.906667rem;
-			border-top: 1px solid @c3;
-			border-bottom: 1px solid @c3;
-			border-radius: 0;
-			color: @c2;
-			font-size: 17px;
-			line-height: 3;
-			&:active {
-				color: darken(@c2, 40%);
-			}
-		}
-	}
 }
 [data-dpr="2"] {
 	.section-page-2 {
@@ -147,10 +99,6 @@
 		.form-item.input-w input {font-size: 28px;}
 		.btn-getCode {font-size: 28px}
 		.invite-code{font-size: 36px;}
-	}
-	.section-page-3 {
-		p {font-size: 28px;}
-		.btn-operate {font-size: 34px;}
 	}
 }
 
@@ -160,9 +108,5 @@
 		.form-item.input-w input {font-size: 42px;}
 		.btn-getCode {font-size: 42px}
 		.invite-code{font-size: 54px;}
-	}
-	.section-page-3 {
-		p {font-size: 42px;}
-		.btn-operate {font-size: 51px;}
 	}
 }
