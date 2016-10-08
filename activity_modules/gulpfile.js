@@ -20,7 +20,6 @@ gulp.task('bs', function() {
 
 	gulp.watch(paths.less, ['less']);
 	gulp.watch(paths.css).on('change', function(e) {
-		console.log(e);
 		bs.reload(e.path);
 	});
 	gulp.watch(paths.scripts).on('change', bs.reload);
