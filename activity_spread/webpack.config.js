@@ -12,12 +12,8 @@ var config_dev = {
 	entry: {
 		index: [
 			'webpack/hot/dev-server',
-			path.resolve(__dirname,'src/react/entry-index.js')
+			path.resolve(__dirname,'src/react/entry.js')
 		],
-                           login: [
-                                'webpack/hot/dev-server',
-                                path.resolve(__dirname,'src/react/entry-login.js')
-                           ],
 		vendors: ['react', 'react-dom']
 	},
 	output: {
@@ -45,12 +41,12 @@ var config_dev = {
                 test: /\.css$/,
                 loaders: ['style-loader', 'css-loader?sourceMap']
             },
-			{
-				test: /\.less$/,
-                                                    // toFix: css-loader 的sourcemap导致less文件中background的url属性应用的图片不显示，暂时不知道原因
-				loaders: ['style-loader', 'css-loader', 'less-loader?sourceMap']
-			},
-			{
+	{
+		test: /\.less$/,
+                        // toFix: css-loader 的sourcemap导致less文件中background的url属性应用的图片不显示，暂时不知道原因
+		loaders: ['style-loader', 'css-loader', 'less-loader?sourceMap']
+	},
+	{
                 test: /\.(jpg|jpeg|png|gif|)$/i,
                 loaders: ['url-loader?limit=15000&name=images/[name].[ext]']
             }, 
@@ -87,7 +83,7 @@ var config_dev = {
 var config_production = {
     entry: {
 		bundle: [
-			path.resolve(__dirname,'src/entry.js')
+			path.resolve(__dirname,'src/react/entry.js')
 		],
 		vendors: ['react', 'react-dom']
 	},
