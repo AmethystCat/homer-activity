@@ -110,3 +110,34 @@
 		.invite-code{font-size: 54px;}
 	}
 }
+
+/* react router css transition */
+.Image {
+  position: absolute;
+  height: 400px;
+  width: 400px;
+  background: olive;
+}
+
+.example-enter {
+  opacity: 0.01;
+  transition: opacity .5s ease-in;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+}
+
+.example-leave {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0;
+}
+
+.link-active {
+  color: #bbbbbb;
+  text-decoration: none;
+}
