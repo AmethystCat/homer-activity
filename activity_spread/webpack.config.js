@@ -23,7 +23,7 @@ var config_dev = {
 	},
 	resolve: {
 		root: '/src',
-		extensions: ['', '.js', 'jsx', '.json', '.less']
+		extensions: ['', '.js', '.jsx', '.json', '.less']
 	},
 	devtool: 'eval',
 	module: {
