@@ -14,7 +14,11 @@ var config_dev = {
             'webpack/hot/dev-server',
             path.resolve(__dirname, 'src/react/entry.js')
         ],
-        vendors: ['react', 'react-dom', 'iscroll']
+        lib: [
+            path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
+            path.resolve(__dirname, 'node_modules/jquery/dist/jquery.slim.min.js')
+        ],
+        vendors: ['react', 'react-dom']
     },
     output: {
         filename: 'js/[name].js',
@@ -26,8 +30,8 @@ var config_dev = {
         extensions: ['', '.js', '.jsx', '.json', '.less'],
         alias: {
             'pages': './pages',
-            \
-            'iscroll': path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js')
+            'iscroll': path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
+            'jquery': path.resolve(__dirname, 'node_modules/jquery/dist/jquery.slim.min.js')
         }
     },
     devtool: 'eval',
@@ -63,7 +67,10 @@ var config_dev = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js'),
         new webpack.ProvidePlugin({
-            IScroll: 'iscroll'
+            IScroll: 'iscroll',
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery'
         })
     ],
     devServer: {
@@ -82,14 +89,27 @@ var config_dev = {
 // ---------------------------------------------------------------------------------------------------
 var config_production = {
     entry: {
-        bundle: [
+        index: [
             path.resolve(__dirname, 'src/react/entry.js')
+        ],
+        lib: [
+            path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
+            path.resolve(__dirname, 'node_modules/jquery/dist/jquery.slim.min.js')
         ],
         vendors: ['react', 'react-dom']
     },
     output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, 'build/js')
+        filename: 'js/[name].js',
+        path: path.resolve(__dirname, 'build')
+    },
+    resolve: {
+        root: '/src',
+        extensions: ['', '.js', '.jsx', '.json', '.less'],
+        alias: {
+            'pages': './pages',
+            'iscroll': path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
+            'jquery': path.resolve(__dirname, 'node_modules/jquery/dist/jquery.slim.min.js')
+        }
     },
     module: {
         loaders: [{
@@ -100,16 +120,11 @@ var config_production = {
             loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'less-loader'])
         }, {
             test: /\.(jpg|jpeg|png|gif|)$/i,
-            loaders: ['url-loader?limit=15000']
+            loaders: ['url-loader?limit=15000&name=images/[name].[ext]']
         }, {
             test: /\.(js|jsx)$/,
             loader: 'babel-loader',
             exclude: [path.resolve(__dirname, 'node_modules')],
-            // query: {
-            // 	presets: ['es2015', 'react', 'stage-0'],
-            // 	plugins: ['transform-runtime'],
-            // 	cacheDirectory: true
-            // }
         }, {
             test: /\.(woff|woff2|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
             loader: 'url?limit=10000'
@@ -117,10 +132,21 @@ var config_production = {
     },
     devtool: 'cheap-module-source-map',
     plugins: [
-        new ExtractTextPlugin('/build/css/style.css', {
+        new ExtractTextPlugin('css/style.css', {
             allChunk: true
         }),
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js'),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
+        new webpack.ProvidePlugin({
+            IScroll: 'iscroll',
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery'
+        })
     ]
 };
 
