@@ -9,123 +9,119 @@ console.log('==================================================华丽丽的分�
 // 开发环境配置
 // --------------------------------------------------------------------------------------------
 var config_dev = {
-	entry: {
-		index: [
-			'webpack/hot/dev-server',
-			path.resolve(__dirname,'src/react/entry.js')
-		],
-		vendors: ['react', 'react-dom']
-	},
-	output: {
-		filename: 'js/[name].js',
-		path: path.resolve(__dirname,'build'),
-		publicPath: '/'
-	},
-	resolve: {
-		root: '/src',
-		extensions: ['', '.js', '.jsx', '.json', '.less']
-	},
-	devtool: 'eval',
-	module: {
-		preLoaders: [
-            {
-                // eslint loader
-                test: /\.(js|jsx)$/,
-                loader: 'eslint-loader',
-                include: [path.resolve(__dirname,'src')],
-                exclude: [path.resolve(__dirname, 'node_modules')]
-            }
+    entry: {
+        index: [
+            'webpack/hot/dev-server',
+            path.resolve(__dirname, 'src/react/entry.js')
         ],
-		loaders: [
-            {
-                test: /\.css$/,
-                loaders: ['style-loader', 'css-loader?sourceMap']
-            },
-	{
-		test: /\.less$/,
-                        // toFix: css-loader 的sourcemap导致less文件中background的url属性应用的图片不显示，暂时不知道原因
-		loaders: ['style-loader', 'css-loader', 'less-loader?sourceMap']
-	},
-	{
-                test: /\.(jpg|jpeg|png|gif|)$/i,
-                loaders: ['url-loader?limit=15000&name=images/[name].[ext]']
-            }, 
-            {
-            	test: /\.(js|jsx)$/,
-            	loader: 'babel-loader',
-            	exclude: [path.resolve(__dirname, 'node_modules')]
-            },
-        	{
-        		test: /\.(woff|woff2|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
-				loader: 'url?limit=10000'
-        	}
-		]
-	},
-	plugins: [
-		new webpack.NoErrorsPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-		new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js')
-	],
-	devServer: {
-            hot: true,
-            inline: true,
-            // proxy: {
-            //   '/*': {
-            //       target: 'http://localhost:3000/',
-            //       secure: false
-            //   }
-            // }
+        vendors: ['react', 'react-dom', 'iscroll']
+    },
+    output: {
+        filename: 'js/[name].js',
+        path: path.resolve(__dirname, 'build'),
+        publicPath: '/'
+    },
+    resolve: {
+        root: '/src',
+        extensions: ['', '.js', '.jsx', '.json', '.less'],
+        alias: {
+            'pages': './pages',
+            \
+            'iscroll': path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js')
         }
+    },
+    devtool: 'eval',
+    module: {
+        preLoaders: [{
+            // eslint loader
+            test: /\.(js|jsx)$/,
+            loader: 'eslint-loader',
+            include: [path.resolve(__dirname, 'src')],
+            exclude: [path.resolve(__dirname, 'node_modules')]
+        }],
+        loaders: [{
+            test: /\.css$/,
+            loaders: ['style-loader', 'css-loader?sourceMap']
+        }, {
+            test: /\.less$/,
+            // toFix: css-loader 的sourcemap导致less文件中background的url属性应用的图片不显示，暂时不知道原因
+            loaders: ['style-loader', 'css-loader', 'less-loader?sourceMap']
+        }, {
+            test: /\.(jpg|jpeg|png|gif|)$/i,
+            loaders: ['url-loader?limit=15000&name=images/[name].[ext]']
+        }, {
+            test: /\.(js|jsx)$/,
+            loader: 'babel-loader',
+            exclude: [path.resolve(__dirname, 'node_modules')]
+        }, {
+            test: /\.(woff|woff2|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'url?limit=10000'
+        }]
+    },
+    plugins: [
+        new webpack.NoErrorsPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js'),
+        new webpack.ProvidePlugin({
+            IScroll: 'iscroll'
+        })
+    ],
+    devServer: {
+        hot: true,
+        inline: true,
+        // proxy: {
+        //   '/*': {
+        //       target: 'http://localhost:3000/',
+        //       secure: false
+        //   }
+        // }
+    }
 };
 
 // 生产环境配置
 // ---------------------------------------------------------------------------------------------------
 var config_production = {
     entry: {
-		bundle: [
-			path.resolve(__dirname,'src/react/entry.js')
-		],
-		vendors: ['react', 'react-dom']
-	},
-	output: {
-		filename: '[name].js',
-		path: path.resolve(__dirname,'build/js')
-	},
+        bundle: [
+            path.resolve(__dirname, 'src/react/entry.js')
+        ],
+        vendors: ['react', 'react-dom']
+    },
+    output: {
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'build/js')
+    },
     module: {
-        loaders: [
-            {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-            },
-            {
-				test: /\.less$/,
-				loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'less-loader'])
-			},
-			{
-                test: /\.(jpg|jpeg|png|gif|)$/i,
-                loaders: ['url-loader?limit=15000']
-            },
-            {
-            	test: /\.(js|jsx)$/,
-            	loader: 'babel-loader',
-            	exclude: [path.resolve(__dirname, 'node_modules')],
-            	// query: {
-            	// 	presets: ['es2015', 'react', 'stage-0'],
-            	// 	plugins: ['transform-runtime'],
-            	// 	cacheDirectory: true
-            	// }
-            },
-        	{
-        		test: /\.(woff|woff2|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
-				loader: 'url?limit=10000'
-        	}
-        ]
+        loaders: [{
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        }, {
+            test: /\.less$/,
+            loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'less-loader'])
+        }, {
+            test: /\.(jpg|jpeg|png|gif|)$/i,
+            loaders: ['url-loader?limit=15000']
+        }, {
+            test: /\.(js|jsx)$/,
+            loader: 'babel-loader',
+            exclude: [path.resolve(__dirname, 'node_modules')],
+            // query: {
+            // 	presets: ['es2015', 'react', 'stage-0'],
+            // 	plugins: ['transform-runtime'],
+            // 	cacheDirectory: true
+            // }
+        }, {
+            test: /\.(woff|woff2|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'url?limit=10000'
+        }]
     },
     devtool: 'cheap-module-source-map',
     plugins: [
-		new ExtractTextPlugin('/build/css/style.css', {allChunk: true}),
-		new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
-	]
+        new ExtractTextPlugin('/build/css/style.css', {
+            allChunk: true
+        }),
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
+    ]
 };
 
 module.exports = (env === 'production') ? config_production : config_dev;
