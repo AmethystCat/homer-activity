@@ -9,23 +9,22 @@ class App extends React.Component {
 
     render() {
         return (
-      	<div className="container">
-                       <ul>
-                            <li><Link to="/list">list</Link></li>        
-                            <li><Link to="/status">status</Link></li>        
-                            <li><Link to="/index">index</Link></li>        
-                       </ul>
-                       <ReactCSSTransitionGroup
-                              component="div"
-                              transitionName="example"
-                              transitionEnterTimeout={500}
-                              transitionLeaveTimeout={500}
-                      >
-                        {React.cloneElement(this.props.children, {
-                            key: this.props.location.pathname
-                        })}
-                      </ReactCSSTransitionGroup>
-      	</div>
+            <div className="container">
+                <ul>
+                    <li>
+                        <Link to="/list">list</Link>
+                    </li>
+                    <li>
+                        <Link to="/status">status</Link>
+                    </li>
+                    <li>
+                        <Link to="/index">index</Link>
+                    </li>
+                </ul>
+                <ReactCSSTransitionGroup component="div" transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                    {React.cloneElement(this.props.children, {key: this.props.location.pathname})}
+                </ReactCSSTransitionGroup>
+            </div>
         );
     }
 }

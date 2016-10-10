@@ -7,7 +7,7 @@ class Associating extends React.Component {
     }
     render() {
         return (
-	<div>Associating</div>
+            <div>Associating</div>
         );
     }
 }

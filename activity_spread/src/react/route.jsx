@@ -1,8 +1,8 @@
 import React  from 'react';
-import App     from './pages/app';
-import Index  from './pages/index/main';
-import List      from './pages/list/main';
-import Status from './pages/status/main';
+import App     from 'pages/app';
+import Index  from 'pages/index/main';
+import List      from 'pages/list/main';
+import Status from 'pages/status/main';
 
 import {Route, IndexRoute} from 'react-router';
 

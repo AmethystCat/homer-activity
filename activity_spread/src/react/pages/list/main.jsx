@@ -7,10 +7,10 @@ class List extends React.Component {
     }
     render() {
         return (
-	        	<div className="Image">
-	    		<h1>list</h1>
-	  	</div>
-  	);
+            <div className="Image">
+                <h1>list</h1>
+            </div>
+        );
     }
 }
 

@@ -7,9 +7,9 @@ class Status extends React.Component {
     }
     render() {
         return (
-        	<div className="Image">
-	    <h1>main</h1>
-	</div>
+            <div className="Image">
+                <h1>main</h1>
+            </div>
         );
     }
 }

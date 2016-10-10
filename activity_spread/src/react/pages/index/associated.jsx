@@ -6,7 +6,9 @@ class Associated extends React.Component {
         this.displayName = 'Associated';
     }
     render() {
-        return <div>Associated</div>;
+        return (
+            <div>Associated</div>
+        );
     }
 }
 
