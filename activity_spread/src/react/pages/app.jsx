@@ -10,7 +10,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="container">
-                <ul>
+                <ul style={{display: 'none'}}>
                     <li>
                         <Link to="/list">list</Link>
                     </li>

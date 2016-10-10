@@ -5,9 +5,32 @@ class Associated extends React.Component {
         super(props);
         this.displayName = 'Associated';
     }
+
+    componentDidMount() {
+        var myScroll = new IScroll('#wrapper', {});
+        myScroll.on('scroll', function(){
+            console.log('move123');
+        });
+    }
+
     render() {
         return (
-            <div>Associated</div>
+            <div id="wrapper">
+                <div id="scroller">
+                    <ul>
+                        <li>123123</li>
+                        <li>123123</li>
+                        <li>123123</li>
+                        <li>123123</li>
+                        <li>123123</li>
+                        <li>123123</li>
+                        <li>123123</li>
+                        <li>123123</li>
+                        <li>123123</li>
+                        <li>123123</li>
+                    </ul>
+                </div>
+            </div>
         );
     }
 }

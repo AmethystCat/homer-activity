@@ -15,7 +15,8 @@ class Index extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="section-page section-page-3">
+                <img src="/images/logo.png" />
                 {this.state.isAssociated
                     ? <Associated/>
                     : <Associating/>}
