@@ -1,0 +1,76 @@
+<i class="sprite sprite-eye_close"></i>
+<i class="sprite sprite-eye_open"></i>
+<i class="sprite sprite-icon_arrow_right"></i>
+<i class="sprite sprite-icon_friends"></i>
+<i class="sprite sprite-icon_homer"></i>
+<i class="sprite sprite-icon_qq"></i>
+<i class="sprite sprite-icon_qzone"></i>
+<i class="sprite sprite-icon_saomiao"></i>
+<i class="sprite sprite-icon_wx"></i>
+<i class="sprite sprite-logo"></i>
+
+.sprite {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-eye_close {
+    width: 44px;
+    height: 21px;
+    background-position: -5px -5px;
+}
+
+.sprite-eye_open {
+    width: 44px;
+    height: 27px;
+    background-position: -59px -5px;
+}
+
+.sprite-icon_arrow_right {
+    width: 12px;
+    height: 20px;
+    background-position: -113px -5px;
+}
+
+.sprite-icon_friends {
+    width: 100px;
+    height: 100px;
+    background-position: -135px -5px;
+}
+
+.sprite-icon_homer {
+    width: 220px;
+    height: 234px;
+    background-position: -5px -115px;
+}
+
+.sprite-icon_qq {
+    width: 100px;
+    height: 100px;
+    background-position: -245px -5px;
+}
+
+.sprite-icon_qzone {
+    width: 100px;
+    height: 100px;
+    background-position: -235px -115px;
+}
+
+.sprite-icon_saomiao {
+    width: 40px;
+    height: 38px;
+    background-position: -355px -5px;
+}
+
+.sprite-icon_wx {
+    width: 100px;
+    height: 100px;
+    background-position: -235px -225px;
+}
+
+.sprite-logo {
+    width: 385px;
+    height: 140px;
+    background-position: -405px -5px;
+}
