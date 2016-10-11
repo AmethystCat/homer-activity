@@ -30,6 +30,7 @@ var config_dev = {
         extensions: ['', '.js', '.jsx', '.json', '.less'],
         alias: {
             'pages': './pages',
+            'images': path.resolve(__dirname, 'src/images'),
             'iscroll': path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
             'jquery': path.resolve(__dirname, 'node_modules/jquery/dist/jquery.slim.min.js')
         }
@@ -75,6 +76,7 @@ var config_dev = {
     ],
     devServer: {
         hot: true,
+        host: '10.0.0.70',
         inline: true,
         // proxy: {
         //   '/*': {
@@ -107,6 +109,7 @@ var config_production = {
         extensions: ['', '.js', '.jsx', '.json', '.less'],
         alias: {
             'pages': './pages',
+            'images': path.resolve(__dirname, 'src/images'),
             'iscroll': path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
             'jquery': path.resolve(__dirname, 'node_modules/jquery/dist/jquery.slim.min.js')
         }
