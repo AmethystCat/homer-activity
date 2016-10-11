@@ -92,6 +92,109 @@
 			color: #fff;
 		}
 	}
+	&-3 {
+		.bg-index {
+			display: block;
+			width: 100%;
+			margin-top: 0.4rem; // 30
+			margin-bottom: 0.72rem; // 54
+		}
+		.invite-w {
+			h3 {
+				margin: 0;
+				text-align: center;
+				letter-spacing: 0.013333rem;
+				font-size: 12px;
+				color: #808080;
+			}
+			.invite-code {
+				margin: 0;
+				padding-top: 0.266667rem;
+				padding-bottom: 0.973333rem;
+				text-align: center;
+				color: #ff5a60;
+				font-size: 18px;
+			}
+		}
+		.share-w {
+			display: flex;
+			justify-content: space-around;
+			.icon-share {
+				border-radius: 50%;
+				border: 0.013333rem dashed @bg_index;
+				transition: border-color .2s ease;
+				&:active {
+					border: 1px dashed #ff5a60;
+				}
+			}
+		}
+		.menu-items {
+			@bc: #e7e7e7;
+			ul {
+				margin-top: 1.733333rem;
+				padding-left: 0.4rem;
+				list-style: none;
+				border-top: 1px solid @bc;
+				border-bottom: 1px solid @bc;
+			}
+			li {
+				border-bottom: 1px solid @bc;
+				&:last-child {
+					border: none;
+					a:active {
+						background: transparent;
+					}
+				}
+			}
+			a {
+				display: block;
+				height: 1.333333rem;
+				line-height: 1.333333rem;
+				text-decoration: none;
+				&:active {
+					background: @bc;
+				}
+
+			}
+			i {
+				display: inline-block;
+				margin-left: 0.266667rem;
+			}
+			span {
+				font-size: 15px;
+			}
+			.item-name {
+				color: #808080;
+				& + span {
+					float: right;
+					margin-right: 0.4rem;
+					color: #4a4a4a;
+				}
+			}
+		}
+	}
+	&-4 {
+		ul {
+			list-style: none;
+			margin: 0;
+			padding-left: 0.4rem;
+		}
+		li {
+			height: 1.333333rem;
+			line-height: 1.333333rem;
+			border-bottom: 1px solid rgba(0,0,0,.1);
+			color: #4a4a4a;
+			font-size: 15px;
+		}
+		.time {
+			float: right;
+			margin-right: 0.4rem;
+		}
+		.list-w {
+			height: 100%;
+			overflow: hidden;
+		}
+	}
 }
 [data-dpr="2"] {
 	.section-page-2 {
@@ -99,6 +202,14 @@
 		.form-item.input-w input {font-size: 28px;}
 		.btn-getCode {font-size: 28px}
 		.invite-code{font-size: 36px;}
+	}
+	.section-page-3 {
+		.invite-w h3 {font-size: 24px;}
+		.invite-code {font-size: 36px;}
+		.menu-items span {font-size: 30px;}
+	}
+	.section-page-4 {
+		li {font-size: 30px;}
 	}
 }
 
@@ -108,6 +219,14 @@
 		.form-item.input-w input {font-size: 42px;}
 		.btn-getCode {font-size: 42px}
 		.invite-code{font-size: 54px;}
+	}
+	.section-page-3 {
+		.invite-w h3{font-size: 36px;}
+		.invite-code {font-size: 54px;}
+		.menu-items span {font-size: 45px;}
+	}
+	.section-page-4 {
+		li {font-size: 45px;}
 	}
 }
 
