@@ -133,3 +133,60 @@
 		transform: translate3d(100%, 0, 0);
 	}
 }
+
+/* loading */
+// .loading-w {
+//     position: absolute;
+//     width: 3.333333rem;
+//     height: 3.333333rem;
+//     top: 50%;
+//     left: 50%;
+//     -webkit-transform: translate(-50%, -50%);
+//     transform: translate(-50%, -50%);
+//     z-index: 2;
+// }
+.loader {
+    position: relative;
+    display: inline-block;
+    width: .7rem;
+    height: 1rem;
+}
+.loader .arc {position: absolute; width: 100%; height: 100%; }
+.loader .arc::before, .loader .arc::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 0.04rem solid;
+    border-radius: 50%;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-top: -0.22rem;
+    margin-left: -0.22rem;
+}
+.loader .arc::before {border-color: #FFF; opacity: .3; }
+.loader .arc::after {
+    border-color: transparent;
+    border-bottom-color: #FFF;
+    -webkit-animation: rotate .8s infinite linear;
+            animation: rotate .8s infinite linear;
+}
+@-webkit-keyframes rotate {
+    100% {-webkit-transform: rotate(360deg); transform: rotate(360deg); } 
+}
+
+@keyframes rotate {
+    100% {-webkit-transform: rotate(360deg); transform: rotate(360deg); } 
+}
+
+/* mask */
+.mask {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5)
+}
