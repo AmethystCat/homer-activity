@@ -3,15 +3,17 @@ import App     from 'pages/app';
 import Index  from 'pages/index/main';
 import List      from 'pages/list/main';
 import Status from 'pages/status/main';
+import Add from 'pages/saler/add';
 
 import {Route, IndexRoute} from 'react-router';
 
 let routes = (
-	<Route path="/" component={App}>
+	<Route path="/api/seller" component={App}>
 		<IndexRoute component={Index} />
-		<Route path="/index" component={Index} />
-		<Route path="/list" component={List} />
-		<Route path="/status" component={Status} />
+		<Route path="/api/seller/index" component={Index} />
+		<Route path="/api/seller/list" component={List} />
+        <Route path="/api/seller/status" component={Status} />
+		<Route path="/api/seller/add-saler" component={Add} />
 	</Route>
 );
 export default routes;

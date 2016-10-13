@@ -9,6 +9,13 @@
 <i class="sprite sprite-icon_wx"></i>
 <i class="sprite sprite-logo"></i>
 
+<i class="sprite sprite-code"></i>
+<i class="sprite sprite-idcard"></i>
+<i class="sprite sprite-invite"></i>
+<i class="sprite sprite-mobile"></i>
+<i class="sprite sprite-name"></i>
+
+
 .sprite {
     background-image: url(spritesheet.png);
     background-repeat: no-repeat;
@@ -73,4 +80,42 @@
     width: 385px;
     height: 140px;
     background-position: -405px -5px;
+}
+
+
+
+.sprite {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-code {
+    width: 25px;
+    height: 30px;
+    background-position: -5px -5px;
+}
+
+.sprite-idcard {
+    width: 30px;
+    height: 23px;
+    background-position: -40px -5px;
+}
+
+.sprite-invite {
+    width: 30px;
+    height: 30px;
+    background-position: -40px -38px;
+}
+
+.sprite-mobile {
+    width: 30px;
+    height: 30px;
+    background-position: -80px -5px;
+}
+
+.sprite-name {
+    width: 30px;
+    height: 30px;
+    background-position: -80px -45px;
 }

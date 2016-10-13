@@ -1,5 +1,6 @@
 @import url(./component);
 .section-page {
+	@primary-red: #ff5a60;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -81,7 +82,7 @@
 			width: auto;
 			transform: translateY(-50%);
 			font-size: 14px;
-			color: #ff5a60;
+			color: @primary-red;
 		}
 		.btn-regist {
 			margin-bottom: 0.8rem;
@@ -112,7 +113,7 @@
 				padding-top: 0.266667rem;
 				padding-bottom: 0.973333rem;
 				text-align: center;
-				color: #ff5a60;
+				color: @primary-red;
 				font-size: 18px;
 			}
 		}
@@ -124,7 +125,7 @@
 				border: 0.013333rem dashed @bg_index;
 				transition: border-color .2s ease;
 				&:active {
-					border: 1px dashed #ff5a60;
+					border: 1px dashed @primary-red;
 				}
 			}
 		}
@@ -211,6 +212,58 @@
 			}
 		}
 	}
+	&-5 {
+		padding: 0.8rem 0.4rem 0; // 60 30 0
+		.form-item {
+			position: relative;
+			margin-bottom: 0.266667rem; // 20
+			input {
+				display: block;
+				width: 100%;
+				padding-left: 1.066667rem;
+				height: 1.333333rem;
+				box-sizing: border-box;
+				background: #f6f6f6;
+				border: 1px solid rgba(0,0,0,.1);
+				font-size: 12px;
+				color: #808080;
+				&::-webkit-input-placeholder {
+					color: #808080;
+				}
+				&:focus {
+					border-color: rgba(0,0,0,.8);
+					background: #fff;
+				}
+				&.filled {
+					background: #fff;
+				}
+			}
+		}
+		.btn-getCode {
+			position: absolute;
+			right: 0.266667rem;// 20
+			top: 50%;
+			width: auto;
+			transform: translateY(-50%);
+			font-size: 14px;
+			color: @primary-red;
+			&:active {
+				color: darken(@primary-red, 20%);
+			}
+		}
+		.btn-sub {
+			width: 100%;
+			margin-top: 0.666667rem; // 50
+			border-radius: 0;
+			background: @primary-red;
+		}
+		.sprite2 {
+			position: absolute;
+			top: 50%;
+			left: 0.266667rem;//20
+			transform: translateY(-50%);
+		}
+	}
 }
 [data-dpr="2"] {
 	.section-page-2 {
@@ -226,6 +279,10 @@
 	}
 	.section-page-4 {
 		li {font-size: 30px;}
+	}
+	.section-page-5 {
+		.form-item input {font-size: 24px;}
+		.btn-getCode {font-size: 28px;}
 	}
 }
 
@@ -243,6 +300,10 @@
 	}
 	.section-page-4 {
 		li {font-size: 45px;}
+	}
+	.section-page-5 {
+		.form-item input {font-size: 36px;}
+		.btn-getCode {font-size: 42px;}
 	}
 }
 
