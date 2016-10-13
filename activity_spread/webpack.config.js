@@ -16,7 +16,7 @@ var config_dev = {
         ],
         lib: [
             path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
-            path.resolve(__dirname, 'node_modules/jquery/dist/jquery.slim.min.js')
+            path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js')
         ],
         vendors: ['react', 'react-dom']
     },
@@ -32,7 +32,7 @@ var config_dev = {
             'pages': './pages',
             'images': path.resolve(__dirname, 'src/images'),
             'iscroll': path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
-            'jquery': path.resolve(__dirname, 'node_modules/jquery/dist/jquery.slim.min.js')
+            'jquery': path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js')
         }
     },
     devtool: 'eval',
@@ -76,7 +76,7 @@ var config_dev = {
     ],
     devServer: {
         hot: true,
-        host: '10.0.0.70',
+        host: '10.0.0.68',
         inline: true,
         // proxy: {
         //   '/*': {
@@ -96,13 +96,14 @@ var config_production = {
         ],
         lib: [
             path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
-            path.resolve(__dirname, 'node_modules/jquery/dist/jquery.slim.min.js')
+            path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js')
         ],
         vendors: ['react', 'react-dom']
     },
     output: {
         filename: 'js/[name].js',
-        path: path.resolve(__dirname, 'build')
+        path: path.resolve(__dirname, 'build'),
+        publicPath: '/'
     },
     resolve: {
         root: '/src',
@@ -111,7 +112,7 @@ var config_production = {
             'pages': './pages',
             'images': path.resolve(__dirname, 'src/images'),
             'iscroll': path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
-            'jquery': path.resolve(__dirname, 'node_modules/jquery/dist/jquery.slim.min.js')
+            'jquery': path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js')
         }
     },
     module: {
