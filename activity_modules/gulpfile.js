@@ -14,7 +14,8 @@ var paths = {
 gulp.task('bs', function() {
 	bs.init({
 		server: {
-			baseDir: './build'
+			baseDir: './build',
+			port: 3001
 		}
 	});
 
