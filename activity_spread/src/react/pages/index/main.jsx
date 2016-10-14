@@ -13,13 +13,13 @@ class Index extends React.Component {
         isZB: true,
         inviteCode: ''
     }
-    
+
     componentDidMount() {
         this.setState({
-            isManager: true,
-            isZB: true,
+            isManager: false,
+            isZB: false,
             inviteCode: '00010001'
-        });     
+        });
     }
 
     render() {
