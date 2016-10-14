@@ -26,7 +26,7 @@ class Index extends React.Component {
         return (
             <div className="section-page section-page-3">
                 <img className="bg-index" src={bg} />
-                    <Associated User={this.state}/>
+                <Associated User={this.state}/>
             </div>
         );
     }

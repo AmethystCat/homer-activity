@@ -112,7 +112,7 @@ class Order extends React.Component {
 
     render() {
         return (
-            <div className="section-page section-page-5">
+            <div className="section-page section-page-6">
                 <form className="form" id="form">
                     <div className="form-item mobile-w">
                         <i className="sprite2 sprite-mobile"></i>
@@ -131,7 +131,6 @@ class Order extends React.Component {
                         <input type="tel" id="idCode" placeholder="请输入对方的身份证号码"/>
                     </div>
                     <div className="form-item color-w">
-                        <i className="sprite2 sprite-idcard"></i>
                         <select id="lockColor">
                             <option value="1">香槟金</option>
                             <option value="2">太空灰</option>
@@ -139,10 +138,9 @@ class Order extends React.Component {
                         </select>
                     </div>
                     <div className="form-item address-w">
-                        <i className="sprite2 sprite-idcard"></i>
                         <textarea id="address" placeholder="请输入安装地址"/>
                     </div>
-                    <button type="button" className="btn btn-sub" onClick={this.fenpei}>分 配</button>
+                    <button type="button" className="btn btn-sub" onClick={this.fenpei}>添 加</button>
                 </form>
             </div>
         );
