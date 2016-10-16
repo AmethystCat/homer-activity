@@ -7,52 +7,17 @@ class Order extends React.Component {
 
     state = {
         contextPath: 'http://192.168.5.102:8000',
-        lock: []
+        lock: [],
+        goods_id: '',
+        name: '',
+        mobile: '',
+        install_address: '',
+        pay_type: 'pos'
     }
 
     componentDidMount() {
         document.title = '添加安装订单';
         this.getGoods();
-    }
-
-    counter = (el, s) => {
-        let count = s || 10;
-        let timer = setInterval(function() {
-            count > 0
-                ? (el.text((count--) + '秒后重发'), el.attr('disabled', true))
-                : (clearInterval(timer), el.text('获取验证码'), el.removeAttr('disabled'));
-        }, 1000);
-        return {
-            recover: function() {
-                clearInterval(timer);
-            }
-        };
-    }
-
-    getCode = (e) => {
-        let $mobile = $('#mobile');
-        if (!$mobile.val()) {
-            alert('请输入对方的手机号');
-            return false;
-        }
-        let counter = this.counter($(e.target));
-        $.ajax({
-            url: this.state.contextPath + '/api/seller/register-code',
-            type: 'post',
-            dataType: 'json',
-            data: {
-                mobile: $mobile.val().trim()
-            }
-        }).done(function(res) {
-            if (res.code === 0) {
-                alert('验证码已发送，请注意查收');
-            } else {
-                alert(res.message);
-                counter.recover();
-            }
-        }).fail(function(error) {
-            console.log(error);
-        }).always(function() {});
     }
 
     getGoods = () => {
@@ -63,7 +28,8 @@ class Order extends React.Component {
         }).done((res) => {
             if (res.code === 0) {
               this.setState({
-                lock: res.locker
+                lock: res.locker,
+                goods_id: res.locker[0].id
               });
             } else {
                 alert(res.message);
@@ -77,37 +43,30 @@ class Order extends React.Component {
     fenpei = (e) => {
         let _this = this,
             $btn = $(e.target);
-        let $mobile = $('#mobile'),
-            $name = $('#name'),
-            $verify_code = $('#code'),
-            $identification = $('#idCode');
-        if (!$mobile.val()) {
+        if (!this.state.mobile) {
             alert('请输入对方的手机号');
             return false;
         }
-        if (!$name.val()) {
+        if (!this.state.name) {
             alert('请输入对方的姓名');
             return false;
         }
-        if (!$verify_code.val()) {
-            alert('请输入验证码');
-            return false;
-        }
-        if (!$identification.val()) {
-            alert('请输入对方的身份证号码');
+        if (!this.state.install_address) {
+            alert('请输入安装地址');
             return false;
         }
         this.showSubState($btn, '提交中...', '分 配', true);
 
         let params = {
-            mobile: $mobile.val().trim(),
-            name: $name.val().trim(),
-            verify_code: $verify_code.val().trim(),
-            identification: $identification.val().trim()
-        };
+                mobile: this.state.mobile,
+                name: this.state.name,
+                goods_id: this.state.goods_id,
+                install_address: this.state.install_address,
+                pay_type: this.state.pay_type
+            };
 
         $.ajax({
-            url: _this.state.contextPath + '/api/seller/register/crowd-sourcing',
+            url: this.state.contextPath + '/api/seller/order/add',
             type: 'post',
             dataType: 'json',
             data: params
@@ -124,6 +83,11 @@ class Order extends React.Component {
         });
     }
 
+    change = (type, e) => {
+        this.state[type] = e.target.value;
+        this.setState({...this.state});
+    }
+
     showSubState = (el, text1, text2, status) => {
         status
             ? (el.css({backgroundColor: '#ccc'}).text(text1))
@@ -136,22 +100,22 @@ class Order extends React.Component {
                 <form className="form" id="form">
                     <div className="form-item mobile-w">
                         <i className="sprite2 sprite-mobile"></i>
-                        <input type="tel" id="mobile" placeholder="请输入对方的手机号"/>
+                        <input type="tel" id="mobile" value={this.state.mobile} placeholder="请输入对方的手机号" onChange={this.change.bind(this, 'mobile')}/>
                     </div>
                     <div className="form-item name-w">
                         <i className="sprite2 sprite-name"></i>
-                        <input type="text" id="name" placeholder="请输入对方的姓名"/>
+                        <input type="text" id="name" value={this.state.name} placeholder="请输入对方的姓名" onChange={this.change.bind(this, 'name')}/>
                     </div>
                     {/*<div className="form-item inviteCode-w">
                         <i className="sprite2 sprite-invite"></i>
                         <input type="tel" id="inviteCode" placeholder="请输入邀请码"/>
                     </div>*/}
-                    <div className="form-item idCode-w">
+                    {/*}<div className="form-item idCode-w">
                         <i className="sprite2 sprite-idcard"></i>
                         <input type="tel" id="idCode" placeholder="请输入对方的身份证号码"/>
-                    </div>
+                    </div>*/}
                     <div className="form-item color-w">
-                        <select id="lockColor">
+                        <select id="lockColor" value={this.state.goods_id} onChange={this.change.bind(this, 'goods_id')}>
                             {
                                 this.state.lock.map((el, index) => {
                                     return (
@@ -161,8 +125,14 @@ class Order extends React.Component {
                             }
                         </select>
                     </div>
+                    <div className="form-item color-w">
+                        <select id="payType" value={this.state.pay_type} onChange={this.change.bind(this, 'pay_type')}>
+                            <option value="cash">现金</option>
+                            <option value="pos">pos机</option>
+                        </select>
+                    </div>
                     <div className="form-item address-w">
-                        <textarea id="address" placeholder="请输入安装地址"/>
+                        <textarea id="address" placeholder="请输入安装地址" value={this.state.install_address} onChange={this.change.bind(this, 'install_address')}/>
                     </div>
                     <button type="button" className="btn btn-sub" onClick={this.fenpei}>添 加</button>
                 </form>
