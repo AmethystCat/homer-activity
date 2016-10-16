@@ -15,9 +15,11 @@ class Index extends React.Component {
     }
 
     componentDidMount() {
+        let isManager = $('input[name="isManager"').val() === 'true' ? true : false,
+            isZB = $('input[name="isZB"]').val() === 'true' ? true : false;
         this.setState({
-            isManager: false,
-            isZB: false,
+            isManager: isManager,
+            isZB: isZB,
             inviteCode: '00010001'
         });
     }

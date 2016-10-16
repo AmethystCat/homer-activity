@@ -6,11 +6,13 @@ class Order extends React.Component {
     }
 
     state = {
-        contextPath: 'http://10.0.0.68:8000'
+        contextPath: 'http://192.168.5.102:8000',
+        lock: []
     }
 
     componentDidMount() {
         document.title = '添加安装订单';
+        this.getGoods();
     }
 
     counter = (el, s) => {
@@ -28,15 +30,14 @@ class Order extends React.Component {
     }
 
     getCode = (e) => {
-        let $mobile = $('#mobile'),
-            _this = this;
+        let $mobile = $('#mobile');
         if (!$mobile.val()) {
             alert('请输入对方的手机号');
             return false;
         }
         let counter = this.counter($(e.target));
         $.ajax({
-            url: _this.state.contextPath + '/api/seller/register-code',
+            url: this.state.contextPath + '/api/seller/register-code',
             type: 'post',
             dataType: 'json',
             data: {
@@ -45,6 +46,25 @@ class Order extends React.Component {
         }).done(function(res) {
             if (res.code === 0) {
                 alert('验证码已发送，请注意查收');
+            } else {
+                alert(res.message);
+                counter.recover();
+            }
+        }).fail(function(error) {
+            console.log(error);
+        }).always(function() {});
+    }
+
+    getGoods = () => {
+        $.ajax({
+            url: this.state.contextPath + '/api/seller/goods',
+            type: 'get',
+            dataType: 'json'
+        }).done((res) => {
+            if (res.code === 0) {
+              this.setState({
+                lock: res.locker
+              });
             } else {
                 alert(res.message);
                 counter.recover();
@@ -132,9 +152,13 @@ class Order extends React.Component {
                     </div>
                     <div className="form-item color-w">
                         <select id="lockColor">
-                            <option value="1">香槟金</option>
-                            <option value="2">太空灰</option>
-                            <option value="3">红古铜</option>
+                            {
+                                this.state.lock.map((el, index) => {
+                                    return (
+                                        <option key={index} value={el.id}>{el.color_title}</option>
+                                    );
+                                })
+                            }
                         </select>
                     </div>
                     <div className="form-item address-w">

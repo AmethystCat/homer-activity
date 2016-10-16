@@ -25,30 +25,32 @@ class List extends React.Component {
     hideLoading = (el) => {
         el.hide();
         $('#mask').hide();
-    } 
+    }
 
     scrollInit = () => {
         let _this = this;
+        // 初始化scroll实例
         let myScroll = new IScroll('#wrapper', {
             scrollbars: true,
             probeType: 1,
             fadeScrollbars: true
         });
+        // 监听滚动事件
         myScroll.on('scroll', function(){
             if (this.y > 50) {
                 _this.showLoading($('#pullDown'));
                 setTimeout(() => {
-                    _this.getData({
+                    _this.props.getData({
                         page: 1,
-                        size: _this.state.size * _this.state.unit
+                        size: _this.state.size * 1
                     }, (res) => {
                         _this.setState({
-                            listData: res.users,
+                            listData: res['list'],
                             page: 1,
                             unit: 1,
                             size: _this.state.size,
-                            loadingTipShow: !!res.users.length,
-                            loadingTip: !!res.users.length ? '' : '暂无数据'
+                            loadingTipShow: !!res['list'].length,
+                            loadingTip: !!res['list'].length ? '' : '暂无数据'
                         });
                         _this.state.Scroll.refresh();
                         _this.hideLoading($('#pullDown'));
@@ -58,6 +60,7 @@ class List extends React.Component {
                 _this.hideLoading($('#pullDown'));
             }
         });
+        // 监听滚动停止事件
         myScroll.on('scrollEnd', function(){
             if (this.scrollerHeight === this.wrapperHeight) return;
             if (this.y - this.maxScrollY < 50) {
@@ -72,24 +75,24 @@ class List extends React.Component {
                 myScroll.scrollTo(0, myScroll.maxScrollY, 0);
 
                 setTimeout(() => {
-                    _this.getData({
+                    _this.props.getData({
                         page: 1,
                         size: _this.state.size * (++ _this.state.unit)
                     }, (res) => {
                         _this.hideLoading($('#pullUp'));
-                        let list = res.users;
+                        let list = res['list'];
                         if (_this.state.listData.length === list.length) {
                             _this.setState({
-                                loadingTipShow: !(!!list.length),
-                                loadingTip: !!res.users.length ? '已加载全部数据' : ''
+                                loadingTipShow: !(!!res['list'].length),
+                                loadingTip: !!res['list'].length ? '已加载全部数据' : ''
                             });
                             return;
                         }
                         _this.setState({
                             listData: list,
                             unit: ++ _this.state.unit,
-                            loadingTipShow: !!res.users.length,
-                            loadingTip: !!res.users.length ? '' : '暂无数据'
+                            loadingTipShow: !!res['list'].length,
+                            loadingTip: !!res['list'].length ? '' : '暂无数据'
                         });
                     });
                 }, 500);
@@ -100,45 +103,24 @@ class List extends React.Component {
 
         return myScroll;
     }
-    getData = (params = {}, cb = () => {}) => {
-        $.ajax({
-            url: 'http://10.0.0.153:8000/api/seller/list',
-            type: 'get',
-            dataType: 'json',
-            data: params
-        })
-        .done(function(res) {
-            if (res.code === 0) {
-                cb(res);
-            } else {
-                alert(res.message);
-            }
-        })
-        .fail(function(error) {
-            console.log(error);
-        })
-        .always(function() {
-            console.log('complete');
-        });
-    }
+
     componentDidMount() {
-        console.log(this.props.location.query.search);
         let scroller = this.scrollInit(),
             params = {
                 page: this.state.page,
                 size: this.state.size * this.state.unit
             };
-        this.getData(params, (res) => {
+        this.props.getData(params, (res) => {
             this.setState({
                 Scroll: scroller,
-                listData: res.users,
-                loadingTipShow: !!res.users.length,
-                loadingTip: !!res.users.length ? '' : '暂无数据'
+                listData: res['list'],
+                loadingTipShow: !!res['list'].length,
+                loadingTip: !!res['list'].length ? '' : '暂无数据'
             });
             this.state.Scroll.refresh();
         });
     }
-    
+
     componentWillUnmount() {
         this.state.Scroll.destroy();
     }
@@ -159,8 +141,8 @@ class List extends React.Component {
                             <ul>
                                 {listData.map((el, index) => {
                                     return (
-                                        <li key={'u_' + index}><span className="mobile">{el.name}</span><span className="time">{el.mobile}</span></li>
-                                    );    
+                                        <li key={'u_' + index}><span className="mobile">{el.key1}</span><span className="time">{el.key2}</span></li>
+                                    );
                                 })}
                             </ul>
                         </div>
