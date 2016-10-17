@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 
 class List extends React.Component {
     constructor(props) {

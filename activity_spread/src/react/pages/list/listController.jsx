@@ -8,7 +8,7 @@ class ListController extends React.Component {
     }
 
     componentWillMount() {
-        console.log(`http://192.168.5.102:8000/api/seller/${this.props.location.query.search}`);
+        console.log(`/api/seller/${this.props.location.query.search}`);
     }
 
     resMatch = (res) => {
@@ -44,7 +44,7 @@ class ListController extends React.Component {
     getData = (params = {}, cb = () => {}) => {
         let _this = this;
         $.ajax({
-            url: `http://192.168.5.102:8000/api/seller/${this.props.location.query.search}`,
+            url: `/api/seller/${this.props.location.query.search}`,
             type: 'get',
             dataType: 'json',
             data: params

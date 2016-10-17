@@ -11,19 +11,19 @@ class Associated extends React.Component {
         let {isManager, isZB, inviteCode} = {...this.props.User};
         let dom_isManager_isZB = (
             <ul>
-                <li><Link to="/list?search=list"><span className="item-name">人员</span><span className="quantity-people"><i className="sprite sprite-icon_arrow_right"></i></span></Link></li>
+                <li><Link to="/list?search=list"><span className="item-name">人员</span><span className="quantity-people">{this.props.User.seller_count}<i className="sprite sprite-icon_arrow_right"></i></span></Link></li>
                 <li><Link to="/add-saler"><span className="item-name">添加业务员</span><span className="quantity-lock"><i className="sprite sprite-icon_arrow_right"></i></span></Link></li>
             </ul>
         );
         let dom_isManager_notZB = (
             <ul>
-                <li><Link to="/list?search=list"><span className="item-name">人员</span><span className="quantity-people"><i className="sprite sprite-icon_arrow_right"></i></span></Link></li>
+                <li><Link to="/list?search=list"><span className="item-name">人员</span><span className="quantity-people">{this.props.User.seller_count}<i className="sprite sprite-icon_arrow_right"></i></span></Link></li>
             </ul>
         );
         let dom_notManager_notZB = (
             <ul>
-                <li><Link to="/list?search=invitee"><span className="item-name">已邀请</span><span className="quantity-peopl"><i className="sprite sprite-icon_arrow_right"></i></span></Link></li>
-                <li><Link to="/list?search=orders"><span className="item-name">已卖出锁</span><span className="quantity-lock"><i className="sprite sprite-icon_arrow_right"></i></span></Link></li>
+                <li><Link to="/list?search=invitee"><span className="item-name">已邀请</span><span className="quantity-peopl">{this.props.User.invite_count}<i className="sprite sprite-icon_arrow_right"></i></span></Link></li>
+                <li><Link to="/list?search=orders"><span className="item-name">已卖出锁</span><span className="quantity-lock">{this.props.User.order_count}<i className="sprite sprite-icon_arrow_right"></i></span></Link></li>
                 <li><Link to="/add-order"><span className="item-name">添加订单</span><span className="quantity-lock"><i className="sprite sprite-icon_arrow_right"></i></span></Link></li>
                 {/*}<li><Link to=""><span className="item-name">关联渠道</span><span className="channel">红旗连锁</span></Link></li>*/}
             </ul>
@@ -35,10 +35,10 @@ class Associated extends React.Component {
                     <p className="invite-code">{inviteCode}</p>
                 </div>
                 <div className="share-w">
-                    <i className="sprite icon-share sprite-icon_friends"></i>
-                    <i className="sprite icon-share sprite-icon_wx"></i>
-                    <i className="sprite icon-share sprite-icon_qq"></i>
-                    <i className="sprite icon-share sprite-icon_qzone"></i>
+                    <i id="wx_friends" className="sprite icon-share sprite-icon_friends"></i>
+                    <i id="wx_wx" className="sprite icon-share sprite-icon_wx"></i>
+                    <i id="wx_qq" className="sprite icon-share sprite-icon_qq"></i>
+                    <i id="wx_qzone" className="sprite icon-share sprite-icon_qzone"></i>
                 </div>
                 <div className="menu-items">
                     {(isManager && isZB) ? dom_isManager_isZB : (isManager && !isZB) ? dom_isManager_notZB : dom_notManager_notZB}

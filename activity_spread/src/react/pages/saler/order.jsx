@@ -6,7 +6,7 @@ class Order extends React.Component {
     }
 
     state = {
-        contextPath: 'http://192.168.5.102:8000',
+        contextPath: '',
         lock: [],
         goods_id: '',
         name: '',

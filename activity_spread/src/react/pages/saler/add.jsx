@@ -6,7 +6,7 @@ class Add extends React.Component {
     }
 
     state = {
-        contextPath: 'http://10.0.0.68:8000'
+        contextPath: ''
     }
 
     componentDidMount() {
@@ -14,7 +14,7 @@ class Add extends React.Component {
     }
 
     counter = (el, s) => {
-        let count = s || 10;
+        let count = s || 60;
         let timer = setInterval(function() {
             count > 0 ? (el.text((count--)+'秒后重发'), el.attr('disabled', true)) : (clearInterval(timer), el.text('获取验证码'), el.removeAttr('disabled'));
         }, 1000);
