@@ -14,11 +14,10 @@ var config_dev = {
             'webpack/hot/dev-server',
             path.resolve(__dirname, 'src/react/entry.js')
         ],
-        lib: [
-            path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
-            path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js')
-        ],
-        vendors: ['react', 'react-dom']
+        // lib: [
+        //     path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js')
+        // ],
+        vendors: ['react', 'react-dom', path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js')]
     },
     output: {
         filename: 'js/[name].js',
@@ -31,8 +30,7 @@ var config_dev = {
         alias: {
             'pages': './pages',
             'images': path.resolve(__dirname, 'src/images'),
-            'iscroll': path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
-            'jquery': path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js')
+            'iscroll': path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js')
         }
     },
     devtool: 'eval',
@@ -68,15 +66,12 @@ var config_dev = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js'),
         new webpack.ProvidePlugin({
-            IScroll: 'iscroll',
-            $: 'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery'
+            IScroll: 'iscroll'
         })
     ],
     devServer: {
         hot: true,
-        host: '10.0.0.68',
+        host: '10.0.0.153',
         inline: true,
         // proxy: {
         //   '/*': {
@@ -111,8 +106,7 @@ var config_production = {
         alias: {
             'pages': './pages',
             'images': path.resolve(__dirname, 'src/images'),
-            'iscroll': path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
-            'jquery': path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js')
+            'iscroll': path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js')
         }
     },
     module: {
@@ -146,10 +140,7 @@ var config_production = {
             }
         }),
         new webpack.ProvidePlugin({
-            IScroll: 'iscroll',
-            $: 'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery'
+            IScroll: 'iscroll'
         })
     ]
 };
