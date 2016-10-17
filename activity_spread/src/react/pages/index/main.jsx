@@ -18,8 +18,8 @@ class Index extends React.Component {
     }
 
     componentDidMount() {
-        let isManager = $('input[name="isManager"').val() === 'true' ? true : false,
-            isZB = $('input[name="isZB"]').val() === 'true' ? true : false,
+        let isManager = $('input[name="isManager"').val() == '1' ? true : false,
+            isZB = $('input[name="isZB"]').val() == '1' ? true : false,
             invite_count = $('input[name="invite_count"]').val(),
             order_count = $('input[name="order_count"]').val(),
             seller_count = $('input[name="seller_count"]').val(),

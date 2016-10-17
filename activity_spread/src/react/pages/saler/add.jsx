@@ -107,7 +107,7 @@ class Add extends React.Component {
     }
 
     showSubState = (el, text1, text2, status) => {
-        status ? (el.css({backgroundColor: '#ccc'}).text(text1)) : (el.css({backgroundColor: '#ff5a60'}).text(text2));
+        status ? (el.css({backgroundColor: '#ccc'}).text(text1).attr('disabled', true)) : (el.css({backgroundColor: '#ff5a60'}).text(text2).removeAttr('disabled'));
     }
 
     render() {

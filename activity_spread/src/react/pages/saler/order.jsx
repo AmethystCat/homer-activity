@@ -55,7 +55,7 @@ class Order extends React.Component {
             alert('请输入安装地址');
             return false;
         }
-        this.showSubState($btn, '提交中...', '分 配', true);
+        this.showSubState($btn, '提交中...', '添 加', true);
 
         let params = {
                 mobile: this.state.mobile,
@@ -72,14 +72,14 @@ class Order extends React.Component {
             data: params
         }).done(function(res) {
             if (res.code === 0) {
-                alert(res.message || '分配成功');
+                alert(res.message || '添加成功');
             } else {
                 alert(res.message);
             }
         }).fail(function(error) {
             console.log(error);
         }).always(function() {
-            _this.showSubState($btn, '提交中...', '分 配', false);
+            _this.showSubState($btn, '提交中...', '添 加', false);
         });
     }
 
@@ -90,8 +90,8 @@ class Order extends React.Component {
 
     showSubState = (el, text1, text2, status) => {
         status
-            ? (el.css({backgroundColor: '#ccc'}).text(text1))
-            : (el.css({backgroundColor: '#ff5a60'}).text(text2));
+            ? (el.css({backgroundColor: '#ccc'}).text(text1).attr('disabled', true))
+            : (el.css({backgroundColor: '#ff5a60'}).text(text2).removeAttr('disabled'));
     }
 
     render() {
