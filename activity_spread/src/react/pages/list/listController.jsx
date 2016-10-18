@@ -27,12 +27,12 @@ class ListController extends React.Component {
             break;
           case 'orders':
             newres = res['orders'].map((el) => {
-              return {key1: el.mobile, key2: el.bought_at.replace(/-/gi, '.')};
+              return {key1: el.mobile, key2: el.bought_at};
             });
             break;
           case 'invitee':
             newres = res['invitee'].map((el) => {
-              return {key1: el.invitee_mobile, key2: el.invited_at.replace(/-/gi, '.')};
+              return {key1: el.invitee_mobile, key2: el.invited_at};
             });
             break;
           default:
