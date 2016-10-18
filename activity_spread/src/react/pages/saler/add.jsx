@@ -6,11 +6,24 @@ class Add extends React.Component {
     }
 
     state = {
-        contextPath: ''
+        contextPath: '',
+        mobile: '',
+        name: '',
+        verify_code: '',
+        identification: ''
     }
 
     componentDidMount() {
         document.title = '分配邀请码';     
+    }
+
+    init = () => {
+        this.setState({
+            mobile: '',
+            name: '',
+            verify_code: '',
+            identification: ''
+        });
     }
 
     counter = (el, s) => {
@@ -53,56 +66,57 @@ class Add extends React.Component {
         .always(function() {});
     }
 
+    change = (key, e) => {
+        this.state[key] = e.target.value;
+        this.setState({...this.state});
+    }
+
     fenpei = (e) => {
-        let _this = this,
-            $btn = $(e.target);
-        let $mobile = $('#mobile'),
-            $name = $('#name'),
-            $verify_code = $('#code'),
-            $identification = $('#idCode');
-        if (!$mobile.val()) {
+        let $btn = $(e.target);
+        if (!this.state.mobile) {
             alert('请输入对方的手机号');
             return false;
         }
-        if (!$name.val()) {
+        if (!this.state.name) {
             alert('请输入对方的姓名');
             return false;
         }
-        if (!$verify_code.val()) {
+        if (!this.state.verify_code) {
             alert('请输入验证码');
             return false;
         }
-        if (!$identification.val()) {
+        if (!this.state.identification) {
             alert('请输入对方的身份证号码');
             return false;
         }
         this.showSubState($btn, '提交中...', '分 配', true);
 
         let params = {
-            mobile: $mobile.val().trim(),
-            name: $name.val().trim(),
-            verify_code: $verify_code.val().trim(),
-            identification: $identification.val().trim()
+            mobile: this.state.mobile.trim(),
+            name: this.state.name.trim(),
+            verify_code: this.state.verify_code.trim(),
+            identification: this.state.identification.trim()
         };
 
         $.ajax({
-            url: _this.state.contextPath + '/api/seller/register/crowd-sourcing',
+            url: this.state.contextPath + '/api/seller/register/crowd-sourcing',
             type: 'post',
             dataType: 'json',
             data: params
         })
-        .done(function(res) {
+        .done((res) => {
             if (res.code === 0) {
                 alert(res.message || '分配成功');
+                this.init();
             } else {
                 alert(res.message);
             }
         })
-        .fail(function(error) {
+        .fail((error) => {
             console.log(error);
         })
-        .always(function() {
-            _this.showSubState($btn, '提交中...', '分 配', false);
+        .always(() => {
+            this.showSubState($btn, '提交中...', '分 配', false);
         });
     }
 
@@ -116,24 +130,20 @@ class Add extends React.Component {
                 <form className="form" id="form">
                     <div className="form-item mobile-w">
                         <i className="sprite2 sprite-mobile"></i>
-                        <input type="tel" id="mobile" placeholder="请输入对方的手机号"/>
+                        <input type="tel" id="mobile" placeholder="请输入对方的手机号" value={this.state.mobile} onChange={this.change.bind(this, 'mobile')}/>
                     </div>
                     <div className="form-item code-w">
                         <i className="sprite2 sprite-code"></i>
-                        <input type="tel" id="code" placeholder="请输入对方的验证码"/>
+                        <input type="tel" id="code" placeholder="请输入对方的验证码" value={this.state.verify_code} onChange={this.change.bind(this, 'verify_code')}/>
                         <button type="button" className="btn btn-getCode" id="btn-getCode" onClick={this.getCode}>获取验证码</button>
                     </div>
                     <div className="form-item name-w">
                         <i className="sprite2 sprite-name"></i>
-                        <input type="text" id="name" placeholder="请输入对方的姓名"/>
+                        <input type="text" id="name" placeholder="请输入对方的姓名" value={this.state.name} onChange={this.change.bind(this, 'name')}/>
                     </div>
-                    {/*<div className="form-item inviteCode-w">
-                        <i className="sprite2 sprite-invite"></i>
-                        <input type="tel" id="inviteCode" placeholder="请输入邀请码"/>
-                    </div>*/}
                     <div className="form-item idCode-w">
                         <i className="sprite2 sprite-idcard"></i>
-                        <input type="tel" id="idCode" placeholder="请输入对方的身份证号码"/>
+                        <input type="tel" id="idCode" placeholder="请输入对方的身份证号码" value={this.state.identification} onChange={this.change.bind(this, 'identification')} />
                     </div>
                     <button type="button" className="btn btn-sub" onClick={this.fenpei}>分 配</button>
                 </form>
