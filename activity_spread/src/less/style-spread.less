@@ -213,6 +213,7 @@
 		}
 	}
 	&-5, &-6 {
+		background: #fff;
 		padding: 0.8rem 0.4rem 0; // 60 30 0
 		.form-item {
 			position: relative;
@@ -220,6 +221,7 @@
 			input,
 			select,
 			textarea {
+				-webkit-appearance: none;
 				display: block;
 				width: 100%;
 				padding-left: 1.066667rem;
@@ -239,6 +241,9 @@
 				&.filled {
 					background: #fff;
 				}
+			}
+			select {
+				-webkit-appearance: menulist;
 			}
 			textarea {
 				padding-top: 0.266667rem;

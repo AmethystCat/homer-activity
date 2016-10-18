@@ -18,9 +18,9 @@ class Index extends React.Component {
     }
 
     componentDidMount() {
-        let isManager = $('input[name="isManager"').val() == '1' ? true : false,
-            isZB = $('input[name="isZB"]').val() == '1' ? true : false,
-            promotion_code = $('input[name="promotion_code"]').val();
+        let isManager = $('#isManager').val() == '1' ? true : false,
+            isZB = $('#isZB').val() == '1' ? true : false,
+            promotion_code = $('#promotion_code').val();
         $.ajax({
             url: '/api/seller/profile',
             type: 'GET',
