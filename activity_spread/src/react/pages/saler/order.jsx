@@ -20,6 +20,14 @@ class Order extends React.Component {
         this.getGoods();
     }
 
+    init = () => {
+        this.setState({
+            name: '',
+            mobile: '',
+            install_address: ''
+        });
+    }
+
     getGoods = () => {
         $.ajax({
             url: this.state.contextPath + '/api/seller/goods',
@@ -73,6 +81,7 @@ class Order extends React.Component {
         }).done(function(res) {
             if (res.code === 0) {
                 alert(res.message || '添加成功');
+                _this.init();
             } else {
                 alert(res.message);
             }
@@ -106,14 +115,6 @@ class Order extends React.Component {
                         <i className="sprite2 sprite-name"></i>
                         <input type="text" id="name" value={this.state.name} placeholder="请输入对方的姓名" onChange={this.change.bind(this, 'name')}/>
                     </div>
-                    {/*<div className="form-item inviteCode-w">
-                        <i className="sprite2 sprite-invite"></i>
-                        <input type="tel" id="inviteCode" placeholder="请输入邀请码"/>
-                    </div>*/}
-                    {/*}<div className="form-item idCode-w">
-                        <i className="sprite2 sprite-idcard"></i>
-                        <input type="tel" id="idCode" placeholder="请输入对方的身份证号码"/>
-                    </div>*/}
                     <div className="form-item color-w">
                         <select id="lockColor" value={this.state.goods_id} onChange={this.change.bind(this, 'goods_id')}>
                             {
