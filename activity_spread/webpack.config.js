@@ -71,7 +71,7 @@ var config_dev = {
     ],
     devServer: {
         hot: true,
-        host: '10.0.0.153',
+        host: '10.0.0.157',
         inline: true,
         // proxy: {
         //   '/*': {
@@ -89,11 +89,10 @@ var config_production = {
         index: [
             path.resolve(__dirname, 'src/react/entry.js')
         ],
-        lib: [
-            path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
-            path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js')
-        ],
-        vendors: ['react', 'react-dom']
+        // lib: [
+        //     path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js')
+        // ],
+        vendors: ['react', 'react-dom', path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js')]
     },
     output: {
         filename: 'js/[name].js',
@@ -128,7 +127,7 @@ var config_production = {
             loader: 'url?limit=10000'
         }]
     },
-    devtool: 'cheap-module-source-map',
+    // devtool: 'cheap-module-source-map',
     plugins: [
         new ExtractTextPlugin('css/style.css', {
             allChunk: true
