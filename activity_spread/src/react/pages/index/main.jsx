@@ -20,17 +20,28 @@ class Index extends React.Component {
     componentDidMount() {
         let isManager = $('input[name="isManager"').val() == '1' ? true : false,
             isZB = $('input[name="isZB"]').val() == '1' ? true : false,
-            invite_count = $('input[name="invite_count"]').val(),
-            order_count = $('input[name="order_count"]').val(),
-            seller_count = $('input[name="seller_count"]').val(),
             promotion_code = $('input[name="promotion_code"]').val();
-        this.setState({
-            isManager: isManager,
-            isZB: isZB,
-            promotion_code: promotion_code,
-            invite_count: invite_count,
-            order_count: order_count,
-            seller_count: seller_count
+        $.ajax({
+            url: '/api/seller/profile',
+            type: 'GET',
+            dataType: 'json'
+        })
+        .done((res) => {
+            if (res.code === 0) {
+                this.setState({
+                    isManager: isManager,
+                    isZB: isZB,
+                    promotion_code: promotion_code || 0,
+                    invite_count: res.invite_count || 0,
+                    order_count: res.order_count || 0,
+                    seller_count: res.seller_count || 0
+                });
+            } else {
+                alert(res.message);
+            }
+         })
+        .fail((error) => {
+            console.log(error);
         });
     }
 
