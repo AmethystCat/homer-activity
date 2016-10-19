@@ -6,7 +6,6 @@ class Add extends React.Component {
     }
 
     state = {
-        contextPath: '',
         mobile: '',
         name: '',
         verify_code: '',
@@ -39,15 +38,14 @@ class Add extends React.Component {
     }
 
     getCode = (e) => {
-        let $mobile = $('#mobile'),
-            _this = this;
+        let $mobile = $('#mobile');
         if (!$mobile.val()) {
             alert('请输入对方的手机号');
             return false;
         }
         let counter = this.counter($(e.target));
         $.ajax({
-            url: _this.state.contextPath + '/api/seller/register-code',
+            url: (window.contextPath || '') + '/api/seller/register-code',
             type: 'post',
             dataType: 'json',
             data: {mobile: $mobile.val().trim()}
@@ -99,7 +97,7 @@ class Add extends React.Component {
         };
 
         $.ajax({
-            url: this.state.contextPath + '/api/seller/register/crowd-sourcing',
+            url: (window.contextPath || '') + '/api/seller/register/crowd-sourcing',
             type: 'post',
             dataType: 'json',
             data: params

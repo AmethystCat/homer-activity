@@ -18,11 +18,13 @@ class Index extends React.Component {
     }
 
     componentDidMount() {
+        new QRCode(document.getElementById('qrcode'), url);
+
         let isManager = $('#isManager').val() == '1' ? true : false,
             isZB = $('#isZB').val() == '1' ? true : false,
             promotion_code = $('#promotion_code').val();
         $.ajax({
-            url: '/api/seller/profile',
+            url: (window.contextPath || '') + '/api/seller/profile',
             type: 'GET',
             dataType: 'json'
         })
@@ -48,7 +50,9 @@ class Index extends React.Component {
     render() {
         return (
             <div className="section-page section-page-3">
-                <img className="bg-index" src={bg} />
+                <div className="banner-w">
+                    <img className="bg-index" src={bg} />
+                </div>
                 <Associated User={this.state}/>
             </div>
         );

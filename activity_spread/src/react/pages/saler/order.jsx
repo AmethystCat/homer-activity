@@ -6,7 +6,6 @@ class Order extends React.Component {
     }
 
     state = {
-        contextPath: '',
         lock: [],
         goods_id: '',
         name: '',
@@ -30,7 +29,7 @@ class Order extends React.Component {
 
     getGoods = () => {
         $.ajax({
-            url: this.state.contextPath + '/api/seller/goods',
+            url: (window.contextPath || '') + '/api/seller/goods',
             type: 'get',
             dataType: 'json'
         }).done((res) => {
@@ -49,8 +48,7 @@ class Order extends React.Component {
     }
 
     fenpei = (e) => {
-        let _this = this,
-            $btn = $(e.target);
+        let $btn = $(e.target);
         if (!this.state.mobile) {
             alert('请输入对方的手机号');
             return false;
@@ -74,21 +72,21 @@ class Order extends React.Component {
             };
 
         $.ajax({
-            url: this.state.contextPath + '/api/seller/order/add',
+            url: (window.contextPath || '') + '/api/seller/order/add',
             type: 'post',
             dataType: 'json',
             data: params
-        }).done(function(res) {
+        }).done((res) => {
             if (res.code === 0) {
                 alert(res.message || '添加成功');
-                _this.init();
+                this.init();
             } else {
                 alert(res.message);
             }
         }).fail(function(error) {
             console.log(error);
-        }).always(function() {
-            _this.showSubState($btn, '提交中...', '添 加', false);
+        }).always(() => {
+            this.showSubState($btn, '提交中...', '添 加', false);
         });
     }
 

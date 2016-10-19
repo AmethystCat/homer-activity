@@ -44,7 +44,7 @@ class ListController extends React.Component {
     getData = (params = {}, cb = () => {}) => {
         let _this = this;
         $.ajax({
-            url: `/api/seller/${this.props.location.query.search}`,
+            url: (window.contextPath || '') + `/api/seller/${this.props.location.query.search}`,
             type: 'get',
             dataType: 'json',
             data: params
