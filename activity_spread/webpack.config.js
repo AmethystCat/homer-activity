@@ -2,7 +2,6 @@ var path = require('path'),
     webpack = require('webpack'),
     env = process.env.NODE_ENV;
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 console.log(env);
 console.log('==================================================华丽丽的分割线=============================================');
 
@@ -17,7 +16,12 @@ var config_dev = {
         // lib: [
         //     path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js')
         // ],
-        vendors: ['react', 'react-dom', path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js')]
+        vendors: [
+            'react', 
+            'react-dom', 
+            path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
+            // path.resolve(__dirname, 'src/scripts/qrcode.min.js')
+        ]
     },
     output: {
         filename: 'js/[name].js',
@@ -42,7 +46,12 @@ var config_dev = {
             include: [path.resolve(__dirname, 'src')],
             exclude: [path.resolve(__dirname, 'node_modules')]
         }],
-        loaders: [{
+        loaders: [
+        // {
+        //     test: require.resolve('./src/scripts/qrcode.min.js'),
+        //     loader: "expose?QRCode"
+        // },
+        {
             test: /\.css$/,
             loaders: ['style-loader', 'css-loader?sourceMap']
         }, {
@@ -71,7 +80,7 @@ var config_dev = {
     ],
     devServer: {
         hot: true,
-        host: '10.0.0.157',
+        host: '10.0.0.163',
         inline: true,
         // proxy: {
         //   '/*': {
