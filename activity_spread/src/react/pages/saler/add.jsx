@@ -53,6 +53,8 @@ class Add extends React.Component {
         .done(function(res) {
             if (res.code === 0) {
                 alert('验证码已发送，请注意查收');
+            } else if(res.code === 10101) {
+                window.location.href = '/login';
             } else {
                 alert(res.message);
                 counter.recover();
@@ -106,6 +108,8 @@ class Add extends React.Component {
             if (res.code === 0) {
                 alert(res.message || '分配成功');
                 this.init();
+            } else if(res.code === 10101) {
+                window.location.href = '/login';
             } else {
                 alert(res.message);
             }

@@ -51,8 +51,9 @@ class ListController extends React.Component {
         })
         .done(function(res) {
             if (res.code === 0) {
-                console.log(_this.resMatch(res));
                 cb(_this.resMatch(res));
+            } else if(res.code === 10101) {
+                window.location.href = '/login';
             } else {
                 alert(res.message);
             }

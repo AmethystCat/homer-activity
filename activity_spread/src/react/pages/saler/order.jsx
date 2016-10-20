@@ -11,7 +11,8 @@ class Order extends React.Component {
         name: '',
         mobile: '',
         install_address: '',
-        pay_type: 'pos'
+        pay_type: 'pos',
+        exception: ''
     }
 
     componentDidMount() {
@@ -38,6 +39,8 @@ class Order extends React.Component {
                 lock: res.locker,
                 goods_id: res.locker[0].id
               });
+            } else if(res.code === 10101) {
+                window.location.href = '/login';
             } else {
                 alert(res.message);
                 counter.recover();
@@ -80,6 +83,8 @@ class Order extends React.Component {
             if (res.code === 0) {
                 alert(res.message || '添加成功');
                 this.init();
+            } else if(res.code === 10101) {
+                window.location.href = '/login';
             } else {
                 alert(res.message);
             }
@@ -92,7 +97,34 @@ class Order extends React.Component {
 
     change = (type, e) => {
         this.state[type] = e.target.value;
+        this.state.exception = '';
         this.setState({...this.state});
+    }
+
+    inviteCheck = () => {
+        $.ajax({
+            url: (window.contextPath || '') + '/api/seller/homer-invite-check',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                mobile: this.state.mobile
+            }
+        })
+        .done((res) => {
+            if (res.code === 0) {
+                this.setState({
+                    exception: ''
+                });
+            } else {
+                this.setState({
+                    exception: '.（⊙o⊙）.' + res.message
+                });
+                $('#mobile').focus();
+            }
+        })
+        .fail((error) => {
+            console.log(error);
+        });
     }
 
     showSubState = (el, text1, text2, status) => {
@@ -107,8 +139,9 @@ class Order extends React.Component {
                 <form className="form" id="form">
                     <div className="form-item mobile-w">
                         <i className="sprite2 sprite-mobile"></i>
-                        <input type="tel" id="mobile" value={this.state.mobile} placeholder="请输入对方的手机号" onChange={this.change.bind(this, 'mobile')}/>
+                        <input type="tel" id="mobile" value={this.state.mobile} placeholder="请输入对方的手机号" onBlur={this.inviteCheck} onChange={this.change.bind(this, 'mobile')}/>
                     </div>
+                    <div className="exception form-item" style={{color: 'red'}}>{this.state.exception}</div>
                     <div className="form-item name-w">
                         <i className="sprite2 sprite-name"></i>
                         <input type="text" id="name" value={this.state.name} placeholder="请输入对方的姓名" onChange={this.change.bind(this, 'name')}/>

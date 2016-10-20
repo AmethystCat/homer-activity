@@ -38,6 +38,8 @@ class Index extends React.Component {
                     order_count: res.order_count || 0,
                     seller_count: res.seller_count || 0
                 });
+            } else if (res.code === 10101){
+                window.location.href = '/login';
             } else {
                 alert(res.message);
             }

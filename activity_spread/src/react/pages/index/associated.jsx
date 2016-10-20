@@ -14,7 +14,7 @@ class Associated extends React.Component {
             dataType: 'json'
         })
         .done(function(res) {
-            if (res.code === 0) {
+            if (res.code === 0 || res.code === 10101) {
                 window.location.href = '/login';
             } else {
                 alert(res.message);
