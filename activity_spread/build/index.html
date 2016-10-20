@@ -29,19 +29,24 @@
 <!-- <script src="/jquery.min.js"></script> -->
 <script src="/zepto-custom-deferred.min.js"></script>
 <script src="/qrcode.min.js"></script>
+<script>
+	var url = 'qweqwewqewq';
+</script>
 <!-- <script src="/iscroll-probe.js"></script> -->
 <script src="/js/vendors.js"></script>
 <!-- <script src="/js/lib.js"></script> -->
 <script src="/js/index.js"></script>
 <script>
 	// var qrcode = new QRCode(document.getElementById("qrcode"), 'http://fkaslfj.com');
-	$('body').on('click', '.qrcode-w', function() {
+	$('body').on('click', '.qrcode-w', function(e) {
+		e.preventDefault();
 		if ($(this).hasClass('bigger')) {
 			$(this).removeClass('bigger');
 		} else {
 			$(this).addClass('bigger');
 		}
-    }).on('click', '#qr-mask', function() {
+    }).on('click', '#qr-mask', function(e) {
+		e.preventDefault();
     	$('.qrcode-w').removeClass('bigger');
     });
 </script>
