@@ -80,7 +80,7 @@ var config_dev = {
     ],
     devServer: {
         hot: true,
-        host: '10.0.0.163',
+        host: '10.0.0.165',
         inline: true,
         // proxy: {
         //   '/*': {
