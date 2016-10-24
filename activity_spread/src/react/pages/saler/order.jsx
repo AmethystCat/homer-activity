@@ -122,7 +122,8 @@ class Order extends React.Component {
             type: 'post',
             dataType: 'json',
             data: {
-                mobile: this.state.mobile
+                mobile: this.state.mobile,
+                verify_code: this.state.verify_code
             }
         })
         .done((res) => {
@@ -171,10 +172,10 @@ class Order extends React.Component {
                     mobileOk: true,
                     exception: ''
                 });
-            } else if(res.code === 10106) {
+            } else if(res.code === 10107) {
                 this.setState({
                     hasRegisted: false,
-                    mobileOk: false,
+                    mobileOk: true,
                     exception: res.message
                 });
             } else {
@@ -216,7 +217,7 @@ class Order extends React.Component {
                             style={{color: this.state.mobileOk ? 'green' : (this.state.mobileOk === false) ? 'red' : ''}}
                         />
                     </div>
-                    <div className="exception form-item" style={{color: 'red'}}>{this.state.exception}</div>
+                    <div className="exception form-item" style={{color: this.state.mobileOk ? 'green' : (this.state.mobileOk === false) ? 'red' : ''}}>{this.state.exception}</div>
                     {
                         !this.state.hasRegisted ? 
                         (
