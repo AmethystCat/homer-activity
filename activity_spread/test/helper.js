@@ -1,3 +1,6 @@
+/**
+ * test setup
+ */
 import jsdom from 'jsdom';
 let exposedProperties = ['window', 'navigator', 'document'];
 
