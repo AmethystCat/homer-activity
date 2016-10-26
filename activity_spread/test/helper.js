@@ -1,10 +1,10 @@
 /**
  * test setup
  */
-import jsdom from 'jsdom';
+import {jsdom} from 'jsdom';
 let exposedProperties = ['window', 'navigator', 'document'];
 
-global.document = jsdom('');
+global.document = jsdom();
 global.window = document.defaultView;
 Object.keys(document.defaultView).forEach((property) => {
     if (typeof global[property] === 'undefined') {

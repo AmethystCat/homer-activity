@@ -3,7 +3,7 @@
   "scripts": {
     "start": "./node_modules/.bin/cross-env NODE_ENV=development ./node_modules/.bin/webpack-dev-server --progress --colors --content-base build --history-api-fallback --define process.env.NODE_ENV='\"development\"'",
     "deploy": "./node_modules/.bin/cross-env NODE_ENV=production ./node_modules/.bin/webpack --define process.env.NODE_ENV='\"production\"' -p",
-    "test": "mocha --compilers js:babel-core/register -r './test/helper.js'"
+    "test": "mocha --compilers js:babel-core/register -r ./test/helper.js -R nyan"
   },
   "babel": {
     "presets": [
@@ -60,6 +60,7 @@
     "mocha": "^3.1.2",
     "react": "^15.1.0",
     "react-addons-css-transition-group": "^15.3.2",
+    "react-addons-test-utils": "^15.3.2",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
