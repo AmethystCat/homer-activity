@@ -6,6 +6,10 @@ class List extends React.Component {
         this.displayName = 'List';
     }
 
+    static propTypes = {
+        getData: React.PropTypes.func
+    };
+
     state = {
         Scroll: null,
         page: 1, // 当前页
