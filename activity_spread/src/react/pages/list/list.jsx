@@ -13,8 +13,7 @@ class List extends React.Component {
     state = {
         Scroll: null,
         page: 1, // 当前页
-        unit: 1,
-        size: 100, // 每页条数
+        size: 50, // 每页条数
         listData: [],
         loadingTipShow: false,
         loadingTip: '加载中...'
@@ -45,12 +44,11 @@ class List extends React.Component {
                 setTimeout(() => {
                     _this.props.getData({
                         page: 1,
-                        size: _this.state.size * 1
+                        size: _this.state.size
                     }, (res) => {
                         _this.setState({
                             listData: res['list'],
                             page: 1,
-                            unit: 1,
                             size: _this.state.size,
                             loadingTipShow: !!res['list'].length,
                             loadingTip: !!res['list'].length ? '' : '暂无数据'
@@ -79,23 +77,25 @@ class List extends React.Component {
 
                 setTimeout(() => {
                     _this.props.getData({
-                        page: 1,
-                        size: _this.state.size * (++ _this.state.unit)
+                        page: _this.state.page + 1,
+                        size: _this.state.size
                     }, (res) => {
                         _this.hideLoading($('#pullUp'));
                         let list = res['list'];
-                        if (_this.state.listData.length === list.length) {
+                        if (!list.length) {
                             _this.setState({
-                                loadingTipShow: !(!!res['list'].length),
-                                loadingTip: !!res['list'].length ? '已加载全部数据' : ''
+                                loadingTipShow: !!res['list'].length,
+                                loadingTip: !!res['list'].length ? '' : '已加载全部数据'
                             });
                             return;
                         }
                         _this.setState({
-                            listData: list,
-                            unit: ++ _this.state.unit,
+                            listData: _this.state.listData.concat(list),
+                            page: _this.state.page + 1,
                             loadingTipShow: !!res['list'].length,
                             loadingTip: !!res['list'].length ? '' : '暂无数据'
+                        }, () => {
+                            myScroll.refresh();
                         });
                     });
                 }, 500);
@@ -111,7 +111,7 @@ class List extends React.Component {
         let scroller = this.scrollInit(),
             params = {
                 page: this.state.page,
-                size: this.state.size * this.state.unit
+                size: this.state.size
             };
         this.props.getData(params, (res) => {
             this.setState({
