@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow, mount, render} from 'enzyme';
 import {expect} from 'chai';
 import sinon from 'sinon';
-import List from './list.jsx';
+import List from '../src/react/pages/list/list.jsx';
 
 describe('list 测试', function() {
     before(function() {
