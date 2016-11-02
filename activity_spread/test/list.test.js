@@ -27,6 +27,7 @@ describe('list 测试', function() {
             cb(res);
         };
         const list = shallow(<List {...props}/>);
-        expect(list.find('ul')).to.equal(false);
+        console.log(list);
+        expect(list.find('ul')).to.have.length(1);
     });
 });
