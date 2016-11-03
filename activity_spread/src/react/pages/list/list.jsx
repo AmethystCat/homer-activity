@@ -1,4 +1,5 @@
 import React from 'react';
+import Test from './test';
 
 class List extends React.Component {
     constructor(props) {
@@ -162,6 +163,7 @@ class List extends React.Component {
                         ): ''}
                     </div>
                 </div>
+                <Test/>
             </div>
         );
     }
