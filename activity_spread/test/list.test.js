@@ -28,6 +28,6 @@ describe('list 测试', function() {
         };
         const list = shallow(<List {...props}/>);
         console.log(list);
-        expect(list.find('ul')).to.have.length(1);
+        expect(list.find('li')).to.have.length(2);
     });
 });
