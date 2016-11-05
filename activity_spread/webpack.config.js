@@ -17,8 +17,8 @@ var config_dev = {
         //     path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js')
         // ],
         vendors: [
-            'react', 
-            'react-dom', 
+            'react',
+            'react-dom',
             path.resolve(__dirname, 'node_modules/iscroll/build/iscroll-probe.js'),
             // path.resolve(__dirname, 'src/scripts/qrcode.min.js')
         ]
@@ -47,28 +47,29 @@ var config_dev = {
             exclude: [path.resolve(__dirname, 'node_modules')]
         }],
         loaders: [
-        // {
-        //     test: require.resolve('./src/scripts/qrcode.min.js'),
-        //     loader: "expose?QRCode"
-        // },
-        {
-            test: /\.css$/,
-            loaders: ['style-loader', 'css-loader?sourceMap']
-        }, {
-            test: /\.less$/,
-            // toFix: css-loader 的sourcemap导致less文件中background的url属性应用的图片不显示，暂时不知道原因
-            loaders: ['style-loader', 'css-loader', 'less-loader?sourceMap']
-        }, {
-            test: /\.(jpg|jpeg|png|gif|)$/i,
-            loaders: ['url-loader?limit=15000&name=images/[name].[ext]']
-        }, {
-            test: /\.(js|jsx)$/,
-            loader: 'babel-loader',
-            exclude: [path.resolve(__dirname, 'node_modules')]
-        }, {
-            test: /\.(woff|woff2|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'url?limit=10000'
-        }]
+            // {
+            //     test: require.resolve('./src/scripts/qrcode.min.js'),
+            //     loader: "expose?QRCode"
+            // },
+            {
+                test: /\.css$/,
+                loaders: ['style-loader', 'css-loader?sourceMap']
+            }, {
+                test: /\.less$/,
+                // toFix: css-loader 的sourcemap导致less文件中background的url属性应用的图片不显示，暂时不知道原因
+                loaders: ['style-loader', 'css-loader', 'less-loader?sourceMap']
+            }, {
+                test: /\.(jpg|jpeg|png|gif|)$/i,
+                loaders: ['url-loader?limit=15000&name=images/[name].[ext]']
+            }, {
+                test: /\.(js|jsx)$/,
+                loader: 'babel-loader',
+                exclude: [path.resolve(__dirname, 'node_modules')]
+            }, {
+                test: /\.(woff|woff2|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url?limit=10000'
+            }
+        ]
     },
     plugins: [
         new webpack.NoErrorsPlugin(),
@@ -80,7 +81,6 @@ var config_dev = {
     ],
     devServer: {
         hot: true,
-        host: '10.0.0.165',
         inline: true,
         // proxy: {
         //   '/*': {
